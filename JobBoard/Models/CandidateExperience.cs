@@ -17,6 +17,6 @@ namespace JobBoard.Models
         public int? DomainId { get; set; }
         public virtual Domain Domain { get; set; }
         public int? CandidateId { get; set; }
-        //public virtual Candidate Candidate { get; set; }
+        public virtual Candidate Candidate { get; set; }
     }
 }
