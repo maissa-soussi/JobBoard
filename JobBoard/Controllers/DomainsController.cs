@@ -11,7 +11,7 @@ using JobBoard.Models;
 
 namespace JobBoard.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class DomainsController : ControllerBase
     {

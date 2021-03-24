@@ -11,7 +11,7 @@ using System.Text;
 
 namespace JobBoard.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class OtherController : ControllerBase
     {
