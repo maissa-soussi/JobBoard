@@ -30,7 +30,7 @@ namespace JobBoard.Controllers
             _oExperiences = new List<Experience>();
             using (var httpClient = new HttpClient(_clientHandler))
             {
-                using (var response = await httpClient.GetAsync("https://localhost:44363/api/Experiences"))
+                using (var response = await httpClient.GetAsync("https://localhost:44304/api/Experiences"))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     _oExperiences = JsonConvert.DeserializeObject<List<Experience>>(apiResponse);
@@ -45,7 +45,7 @@ namespace JobBoard.Controllers
             _oExperience = new Experience();
             using (var httpClient = new HttpClient(_clientHandler))
             {
-                using (var response = await httpClient.GetAsync("https://localhost:44363/api/Experiences/" + Id))
+                using (var response = await httpClient.GetAsync("https://localhost:44304/api/Experiences/" + Id))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     _oExperience = JsonConvert.DeserializeObject<Experience>(apiResponse);
@@ -62,7 +62,7 @@ namespace JobBoard.Controllers
             {
                 StringContent content = new StringContent(JsonConvert.SerializeObject(experience), Encoding.UTF8, "application/json");
 
-                using (var response = await httpClient.PostAsync("https://localhost:44363/api/Experiences", content))
+                using (var response = await httpClient.PostAsync("https://localhost:44304/api/Experiences", content))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     _oExperience = JsonConvert.DeserializeObject<Experience>(apiResponse);
@@ -79,7 +79,7 @@ namespace JobBoard.Controllers
             {
                 StringContent content = new StringContent(JsonConvert.SerializeObject(experience), Encoding.UTF8, "application/json");
 
-                using (var response = await httpClient.PutAsync("https://localhost:44363/api/Experiences/" + Id, content))
+                using (var response = await httpClient.PutAsync("https://localhost:44304/api/Experiences/" + Id, content))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     if (response.IsSuccessStatusCode)
@@ -100,7 +100,7 @@ namespace JobBoard.Controllers
             string message = "";
             using (var httpClient = new HttpClient(_clientHandler))
             {
-                using (var response = await httpClient.DeleteAsync("https://localhost:44363/api/Experiences/" + Id))
+                using (var response = await httpClient.DeleteAsync("https://localhost:44304/api/Experiences/" + Id))
                 {
                     message = await response.Content.ReadAsStringAsync();
                 }

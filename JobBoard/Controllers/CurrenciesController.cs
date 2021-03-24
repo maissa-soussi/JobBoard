@@ -30,7 +30,7 @@ namespace JobBoard.Controllers
             _oCurrencies = new List<Currency>();
             using (var httpClient = new HttpClient(_clientHandler))
             {
-                using (var response = await httpClient.GetAsync("https://localhost:44363/api/Currencies"))
+                using (var response = await httpClient.GetAsync("https://localhost:44304/api/Currencies"))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     _oCurrencies = JsonConvert.DeserializeObject<List<Currency>>(apiResponse);
@@ -45,7 +45,7 @@ namespace JobBoard.Controllers
             _oCurrency = new Currency();
             using (var httpClient = new HttpClient(_clientHandler))
             {
-                using (var response = await httpClient.GetAsync("https://localhost:44363/api/Currencies/" + Id))
+                using (var response = await httpClient.GetAsync("https://localhost:44304/api/Currencies/" + Id))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     _oCurrency = JsonConvert.DeserializeObject<Currency>(apiResponse);
@@ -62,7 +62,7 @@ namespace JobBoard.Controllers
             {
                 StringContent content = new StringContent(JsonConvert.SerializeObject(currency), Encoding.UTF8, "application/json");
 
-                using (var response = await httpClient.PostAsync("https://localhost:44363/api/Currencies", content))
+                using (var response = await httpClient.PostAsync("https://localhost:44304/api/Currencies", content))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     _oCurrency = JsonConvert.DeserializeObject<Currency>(apiResponse);
@@ -79,7 +79,7 @@ namespace JobBoard.Controllers
             {
                 StringContent content = new StringContent(JsonConvert.SerializeObject(currency), Encoding.UTF8, "application/json");
 
-                using (var response = await httpClient.PutAsync("https://localhost:44363/api/Currencies/" + Id, content))
+                using (var response = await httpClient.PutAsync("https://localhost:44304/api/Currencies/" + Id, content))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     if (response.IsSuccessStatusCode)
@@ -100,7 +100,7 @@ namespace JobBoard.Controllers
             string message = "";
             using (var httpClient = new HttpClient(_clientHandler))
             {
-                using (var response = await httpClient.DeleteAsync("https://localhost:44363/api/Currencies/" + Id))
+                using (var response = await httpClient.DeleteAsync("https://localhost:44304/api/Currencies/" + Id))
                 {
                     message = await response.Content.ReadAsStringAsync();
                 }

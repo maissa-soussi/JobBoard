@@ -30,7 +30,7 @@ namespace JobBoard.Controllers
             _oCountries = new List<Country>();
             using (var httpClient = new HttpClient(_clientHandler))
             {
-                using (var response = await httpClient.GetAsync("https://localhost:44363/api/Countries"))
+                using (var response = await httpClient.GetAsync("https://localhost:44304/api/Countries"))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     _oCountries = JsonConvert.DeserializeObject<List<Country>>(apiResponse);
@@ -45,7 +45,7 @@ namespace JobBoard.Controllers
             _oCountry = new Country();
             using (var httpClient = new HttpClient(_clientHandler))
             {
-                using (var response = await httpClient.GetAsync("https://localhost:44363/api/Countries/" + Id))
+                using (var response = await httpClient.GetAsync("https://localhost:44304/api/Countries/" + Id))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     _oCountry = JsonConvert.DeserializeObject<Country>(apiResponse);
@@ -62,7 +62,7 @@ namespace JobBoard.Controllers
             {
                 StringContent content = new StringContent(JsonConvert.SerializeObject(country), Encoding.UTF8, "application/json");
 
-                using (var response = await httpClient.PostAsync("https://localhost:44363/api/Countries", content))
+                using (var response = await httpClient.PostAsync("https://localhost:44304/api/Countries", content))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     _oCountry = JsonConvert.DeserializeObject<Country>(apiResponse);
@@ -79,7 +79,7 @@ namespace JobBoard.Controllers
             {
                 StringContent content = new StringContent(JsonConvert.SerializeObject(country), Encoding.UTF8, "application/json");
 
-                using (var response = await httpClient.PutAsync("https://localhost:44363/api/Countries/" + Id, content))
+                using (var response = await httpClient.PutAsync("https://localhost:44304/api/Countries/" + Id, content))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     if (response.IsSuccessStatusCode)
@@ -100,7 +100,7 @@ namespace JobBoard.Controllers
             string message = "";
             using (var httpClient = new HttpClient(_clientHandler))
             {
-                using (var response = await httpClient.DeleteAsync("https://localhost:44363/api/Countries/" + Id))
+                using (var response = await httpClient.DeleteAsync("https://localhost:44304/api/Countries/" + Id))
                 {
                     message = await response.Content.ReadAsStringAsync();
                 }

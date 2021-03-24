@@ -30,7 +30,7 @@ namespace JobBoard.Controllers
             _oCandidateExperiences = new List<CandidateExperience>();
             using (var httpClient = new HttpClient(_clientHandler))
             {
-                using (var response = await httpClient.GetAsync("https://localhost:44363/api/CandidateExperiences"))
+                using (var response = await httpClient.GetAsync("https://localhost:44304/api/CandidateExperiences"))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     _oCandidateExperiences = JsonConvert.DeserializeObject<List<CandidateExperience>>(apiResponse);
@@ -45,7 +45,7 @@ namespace JobBoard.Controllers
             _oCandidateExperience = new CandidateExperience();
             using (var httpClient = new HttpClient(_clientHandler))
             {
-                using (var response = await httpClient.GetAsync("https://localhost:44363/api/CandidateExperiences/" + Id))
+                using (var response = await httpClient.GetAsync("https://localhost:44304/api/CandidateExperiences/" + Id))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     _oCandidateExperience = JsonConvert.DeserializeObject<CandidateExperience>(apiResponse);
@@ -62,7 +62,7 @@ namespace JobBoard.Controllers
             {
                 StringContent content = new StringContent(JsonConvert.SerializeObject(candidateExperience), Encoding.UTF8, "application/json");
 
-                using (var response = await httpClient.PostAsync("https://localhost:44363/api/CandidateExperiences", content))
+                using (var response = await httpClient.PostAsync("https://localhost:44304/api/CandidateExperiences", content))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     _oCandidateExperience = JsonConvert.DeserializeObject<CandidateExperience>(apiResponse);
@@ -79,7 +79,7 @@ namespace JobBoard.Controllers
             {
                 StringContent content = new StringContent(JsonConvert.SerializeObject(candidateExperience), Encoding.UTF8, "application/json");
 
-                using (var response = await httpClient.PutAsync("https://localhost:44363/api/CandidateExperiences/" + Id, content))
+                using (var response = await httpClient.PutAsync("https://localhost:44304/api/CandidateExperiences/" + Id, content))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     if (response.IsSuccessStatusCode)
@@ -100,7 +100,7 @@ namespace JobBoard.Controllers
             string message = "";
             using (var httpClient = new HttpClient(_clientHandler))
             {
-                using (var response = await httpClient.DeleteAsync("https://localhost:44363/api/CandidateExperiences/" + Id))
+                using (var response = await httpClient.DeleteAsync("https://localhost:44304/api/CandidateExperiences/" + Id))
                 {
                     message = await response.Content.ReadAsStringAsync();
                 }

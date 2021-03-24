@@ -11,7 +11,7 @@ using JobBoard.Models;
 
 namespace JobBoard.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class DomainsController : ControllerBase
     {
@@ -30,7 +30,7 @@ namespace JobBoard.Controllers
             _oDomains = new List<Domain>();
             using (var httpClient = new HttpClient(_clientHandler))
             {
-                using (var response = await httpClient.GetAsync("https://localhost:44363/api/Domains"))
+                using (var response = await httpClient.GetAsync("https://localhost:44304/api/Domains"))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     _oDomains = JsonConvert.DeserializeObject<List<Domain>>(apiResponse);
@@ -45,7 +45,7 @@ namespace JobBoard.Controllers
             _oDomain = new Domain();
             using (var httpClient = new HttpClient(_clientHandler))
             {
-                using (var response = await httpClient.GetAsync("https://localhost:44363/api/Domains/" + Id))
+                using (var response = await httpClient.GetAsync("https://localhost:44304/api/Domains/" + Id))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     _oDomain = JsonConvert.DeserializeObject<Domain>(apiResponse);
@@ -62,7 +62,7 @@ namespace JobBoard.Controllers
             {
                 StringContent content = new StringContent(JsonConvert.SerializeObject(domain), Encoding.UTF8, "application/json");
 
-                using (var response = await httpClient.PostAsync("https://localhost:44363/api/Domains", content))
+                using (var response = await httpClient.PostAsync("https://localhost:44304/api/Domains", content))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     _oDomain = JsonConvert.DeserializeObject<Domain>(apiResponse);
@@ -79,7 +79,7 @@ namespace JobBoard.Controllers
             {
                 StringContent content = new StringContent(JsonConvert.SerializeObject(domain), Encoding.UTF8, "application/json");
 
-                using (var response = await httpClient.PutAsync("https://localhost:44363/api/Domains/" + Id, content))
+                using (var response = await httpClient.PutAsync("https://localhost:44304/api/Domains/" + Id, content))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     if (response.IsSuccessStatusCode)
@@ -100,7 +100,7 @@ namespace JobBoard.Controllers
             string message = "";
             using (var httpClient = new HttpClient(_clientHandler))
             {
-                using (var response = await httpClient.DeleteAsync("https://localhost:44363/api/Domains/" + Id))
+                using (var response = await httpClient.DeleteAsync("https://localhost:44304/api/Domains/" + Id))
                 {
                     message = await response.Content.ReadAsStringAsync();
                 }
