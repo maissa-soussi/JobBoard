@@ -7,7 +7,7 @@ namespace JobBoard.Models
 {
     public class CandidateLanguageDTO
     {
-        public Language Language { get; set; }
-        public LanguageLevel LanguageLevel { get; set; }
+        public int? LanguageId { get; set; }
+        public int? LanguageLevelId { get; set; }
     }
 }

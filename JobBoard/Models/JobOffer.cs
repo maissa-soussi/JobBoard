@@ -18,11 +18,11 @@ namespace JobBoard.Models
         public int? ContratTypeId { get; set; }
         public virtual ContratType ContratType { get; set; }
         public string Description { get; set; }
-        public int? CurrencyId { get; set; }
-        public virtual Currency Currency { get; set; }
         public int MinSalary { get; set; }
         public int MaxSalary { get; set; }
         public string PublicationDate { get; set; }
         public string ExpirationDate { get; set; }
+        public int? DomainId { get; set; }
+        public virtual Domain Domain { get; set; }
     }
 }

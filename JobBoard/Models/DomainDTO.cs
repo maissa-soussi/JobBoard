@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace JobBoard.Models
 {
-    public class Currency
+    public class DomainDTO
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
+        public Domain Domain { get; set; }
+        public List<int?> CandidateIDs { get; set; }
     }
 }

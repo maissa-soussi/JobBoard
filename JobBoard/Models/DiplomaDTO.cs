@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace JobBoard.Models
 {
-    public class JobOfferDTO
+    public class DiplomaDTO
     {
-        public JobOffer JobOffer { get; set; }
+        public Diploma Diploma { get; set; }
         public List<int?> CandidateIDs { get; set; }
     }
 }
