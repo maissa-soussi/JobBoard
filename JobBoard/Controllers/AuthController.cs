@@ -25,7 +25,7 @@ namespace JobBoard.Controllers
         }
 
         [HttpPost]
-        public async Task<User> PostUser(User user)
+        public async Task<ActionResult<IEnumerable<User>>> PostUser(User user)
         {
             _oUser = new User();
             using (var httpClient = new HttpClient(_clientHandler))
@@ -38,7 +38,12 @@ namespace JobBoard.Controllers
                     _oUser = JsonConvert.DeserializeObject<User>(apiResponse);
                 }
             }
-            return _oUser;
+            if (_oUser.Email == null)
+            {
+                return Unauthorized();
+            }
+
+            return Ok(_oUser);
         }
     }
 }
