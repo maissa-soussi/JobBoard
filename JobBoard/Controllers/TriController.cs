@@ -20,6 +20,7 @@ namespace JobBoard.Controllers
 
         DiplomaDTO _oDiploma = new DiplomaDTO();
         List<int >_idCandidats =new List<int>();
+        List<Candidature> liste = new List<Candidature>();
 
         public TriController()
         {
@@ -27,17 +28,18 @@ namespace JobBoard.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<List<int>> GetDiplomaDTO(int id)
+        public async Task<List<Candidature>> GetDiplomaDTO(int id)
         {
             using (var httpClient = new HttpClient(_clientHandler))
             {
                 using (var response = await httpClient.GetAsync("http://localhost:5000/predict/" + id))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    _idCandidats = JsonConvert.DeserializeObject<List<int>>(apiResponse);
+                    liste = JsonConvert.DeserializeObject<List<Candidature>>(apiResponse);
                 }
             }
-            return _idCandidats;
+        
+            return liste;
         }
     }
 }
