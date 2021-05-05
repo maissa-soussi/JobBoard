@@ -28,7 +28,7 @@ namespace JobBoard.Controllers
         {
             using (var httpClient = new HttpClient(_clientHandler))
             {
-                using (var response = await httpClient.GetAsync("https://localhost:44304/api/CandidatureSpont"))
+                using (var response = await httpClient.GetAsync("https://localhost:44304/api/CandidatureSponts"))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     _oCandidatures = JsonConvert.DeserializeObject<List<CandidatureSpont>>(apiResponse);
@@ -43,7 +43,7 @@ namespace JobBoard.Controllers
             _oCandidature = new CandidatureSpont();
             using (var httpClient = new HttpClient(_clientHandler))
             {
-                using (var response = await httpClient.GetAsync("https://localhost:44304/api/CandidatureSpont/" + Id))
+                using (var response = await httpClient.GetAsync("https://localhost:44304/api/CandidatureSponts/" + Id))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     _oCandidature = JsonConvert.DeserializeObject<CandidatureSpont>(apiResponse);
@@ -60,7 +60,7 @@ namespace JobBoard.Controllers
             {
                 StringContent content = new StringContent(JsonConvert.SerializeObject(Candidature), Encoding.UTF8, "application/json");
 
-                using (var response = await httpClient.PostAsync("https://localhost:44304/api/CandidatureSpont", content))
+                using (var response = await httpClient.PostAsync("https://localhost:44304/api/CandidatureSponts", content))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     _oCandidature = JsonConvert.DeserializeObject<CandidatureSpont>(apiResponse);
@@ -77,7 +77,7 @@ namespace JobBoard.Controllers
             {
                 StringContent content = new StringContent(JsonConvert.SerializeObject(Candidature), Encoding.UTF8, "application/json");
 
-                using (var response = await httpClient.PutAsync("https://localhost:44304/api/CandidatureSpont/" + Id, content))
+                using (var response = await httpClient.PutAsync("https://localhost:44304/api/CandidatureSponts/" + Id, content))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     if (response.IsSuccessStatusCode)
@@ -98,7 +98,7 @@ namespace JobBoard.Controllers
             string message = "";
             using (var httpClient = new HttpClient(_clientHandler))
             {
-                using (var response = await httpClient.DeleteAsync("https://localhost:44304/api/CandidatureSpont/" + Id))
+                using (var response = await httpClient.DeleteAsync("https://localhost:44304/api/CandidatureSponts/" + Id))
                 {
                     message = await response.Content.ReadAsStringAsync();
                 }
