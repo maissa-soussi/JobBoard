@@ -17,73 +17,75 @@ namespace JobBoard.Controllers
     {
         HttpClientHandler _clientHandler = new HttpClientHandler();
 
-        CandidatureSpont _oCandidature = new CandidatureSpont();
-        List<CandidatureSpont> _oCandidatures = new List<CandidatureSpont>();
+        CandidatureSpont _oCandidatureSpont = new CandidatureSpont();
+        List<CandidatureSpont> _oCandidatureSponts = new List<CandidatureSpont>();
         public CandidatureSpontsController()
         {
             _clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };
         }
+
         [HttpGet]
-        public async Task<List<CandidatureSpont>> GetCandidature()
+        public async Task<List<CandidatureSpont>> GetCandidatureSpont()
         {
+            _oCandidatureSponts = new List<CandidatureSpont>();
             using (var httpClient = new HttpClient(_clientHandler))
             {
-                using (var response = await httpClient.GetAsync("https://localhost:44304/api/CandidatureSpont"))
+                using (var response = await httpClient.GetAsync("https://localhost:44304/api/CandidatureSponts"))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    _oCandidatures = JsonConvert.DeserializeObject<List<CandidatureSpont>>(apiResponse);
+                    _oCandidatureSponts = JsonConvert.DeserializeObject<List<CandidatureSpont>>(apiResponse);
                 }
             }
-            return _oCandidatures;
+            return _oCandidatureSponts;
         }
 
         [HttpGet("{Id}")]
-        public async Task<CandidatureSpont> GetCandidature(int Id)
+        public async Task<CandidatureSpont> GetCandidatureSpont(int Id)
         {
-            _oCandidature = new CandidatureSpont();
+            _oCandidatureSpont = new CandidatureSpont();
             using (var httpClient = new HttpClient(_clientHandler))
             {
-                using (var response = await httpClient.GetAsync("https://localhost:44304/api/CandidatureSpont/" + Id))
+                using (var response = await httpClient.GetAsync("https://localhost:44304/api/CandidatureSponts/" + Id))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    _oCandidature = JsonConvert.DeserializeObject<CandidatureSpont>(apiResponse);
+                    _oCandidatureSpont = JsonConvert.DeserializeObject<CandidatureSpont>(apiResponse);
                 }
             }
-            return _oCandidature;
+            return _oCandidatureSpont;
         }
 
         [HttpPost]
-        public async Task<CandidatureSpont> PostCandidature(CandidatureSpont Candidature)
+        public async Task<CandidatureSpont> PostCandidatureSpont(CandidatureSpont CandidatureSpont)
         {
-            _oCandidature = new CandidatureSpont();
+            _oCandidatureSpont = new CandidatureSpont();
             using (var httpClient = new HttpClient(_clientHandler))
             {
-                StringContent content = new StringContent(JsonConvert.SerializeObject(Candidature), Encoding.UTF8, "application/json");
+                StringContent content = new StringContent(JsonConvert.SerializeObject(CandidatureSpont), Encoding.UTF8, "application/json");
 
-                using (var response = await httpClient.PostAsync("https://localhost:44304/api/CandidatureSpont", content))
+                using (var response = await httpClient.PostAsync("https://localhost:44304/api/CandidatureSponts", content))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    _oCandidature = JsonConvert.DeserializeObject<CandidatureSpont>(apiResponse);
+                    _oCandidatureSpont = JsonConvert.DeserializeObject<CandidatureSpont>(apiResponse);
                 }
             }
-            return _oCandidature;
+            return _oCandidatureSpont;
         }
 
         [HttpPut("{Id}")]
-        public async Task<IActionResult> PutCandidature(int Id, CandidatureSpont Candidature)
+        public async Task<IActionResult> PutCandidatureSpont(int Id, CandidatureSpont CandidatureSpont)
         {
-            _oCandidature = new CandidatureSpont();
+            _oCandidatureSpont = new CandidatureSpont();
             using (var httpClient = new HttpClient(_clientHandler))
             {
-                StringContent content = new StringContent(JsonConvert.SerializeObject(Candidature), Encoding.UTF8, "application/json");
+                StringContent content = new StringContent(JsonConvert.SerializeObject(CandidatureSpont), Encoding.UTF8, "application/json");
 
-                using (var response = await httpClient.PutAsync("https://localhost:44304/api/CandidatureSpont/" + Id, content))
+                using (var response = await httpClient.PutAsync("https://localhost:44304/api/CandidatureSponts/" + Id, content))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     if (response.IsSuccessStatusCode)
                     {
-                        _oCandidature = JsonConvert.DeserializeObject<CandidatureSpont>(apiResponse);
-                        return Ok(_oCandidature);
+                        _oCandidatureSpont = JsonConvert.DeserializeObject<CandidatureSpont>(apiResponse);
+                        return Ok(_oCandidatureSpont);
                     }
                     else
                         return BadRequest();
@@ -93,12 +95,12 @@ namespace JobBoard.Controllers
         }
 
         [HttpDelete("{Id}")]
-        public async Task<string> DeleteCandidature(int Id)
+        public async Task<string> DeleteCandidatureSpont(int Id)
         {
             string message = "";
             using (var httpClient = new HttpClient(_clientHandler))
             {
-                using (var response = await httpClient.DeleteAsync("https://localhost:44304/api/CandidatureSpont/" + Id))
+                using (var response = await httpClient.DeleteAsync("https://localhost:44304/api/CandidatureSponts/" + Id))
                 {
                     message = await response.Content.ReadAsStringAsync();
                 }
