@@ -13,28 +13,27 @@ namespace JobBoard.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class AdminsController : ControllerBase
+    public class StatsController : ControllerBase
     {
         HttpClientHandler _clientHandler = new HttpClientHandler();
-
-        User _oUser = new User();
-        List<User> _oAdmins = new List<User>();
-        public AdminsController()
+        public StatsController()
         {
             _clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };
         }
+
         [HttpGet]
-        public async Task<List<User>> GetAdmins()
+        public async Task<Stat> GetStat()
         {
+            Stat _oStat = new Stat();
             using (var httpClient = new HttpClient(_clientHandler))
             {
-                using (var response = await httpClient.GetAsync("https://localhost:44304/api/Admins"))
+                using (var response = await httpClient.GetAsync("https://localhost:44304/api/Stats"))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    _oAdmins = JsonConvert.DeserializeObject<List<User>>(apiResponse);
+                    _oStat = JsonConvert.DeserializeObject<Stat>(apiResponse);
                 }
             }
-            return _oAdmins;
+            return _oStat;
         }
     }
 }
