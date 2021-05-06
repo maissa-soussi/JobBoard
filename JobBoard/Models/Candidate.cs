@@ -20,7 +20,11 @@ namespace JobBoard.Models
         public virtual User User { get; set; }
         public int? CountryId { get; set; }
         public virtual Country Country { get; set; }
-        public int? OtherId { get; set; }
-        public virtual Other Other { get; set; }
+        public string FacebookUrl { get; set; }
+        public string LinkedinUrl { get; set; }
+        public int SalaryWishId { get; set; }
+        public virtual SalaryWish SalaryWish { get; set; }
+        public int DrivingLicenceId { get; set; }
+        public virtual DrivingLicence DrivingLicence { get; set; }
     }
 }
