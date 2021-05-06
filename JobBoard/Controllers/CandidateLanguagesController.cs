@@ -40,18 +40,18 @@ namespace JobBoard.Controllers
         }
 
         [HttpGet("{Id}")]
-        public async Task<CandidateLanguage> GetCandidateLanguage(int Id)
+        public async Task<List<CandidateLanguage>> GetCandidateLanguage(int Id)
         {
-            _oCandidateLanguage = new CandidateLanguage();
+            _oCandidateLanguages = new List<CandidateLanguage>();
             using (var httpClient = new HttpClient(_clientHandler))
             {
                 using (var response = await httpClient.GetAsync("https://localhost:44304/api/CandidateLanguages/" + Id))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    _oCandidateLanguage = JsonConvert.DeserializeObject<CandidateLanguage>(apiResponse);
+                    _oCandidateLanguages = JsonConvert.DeserializeObject<List<CandidateLanguage>>(apiResponse);
                 }
             }
-            return _oCandidateLanguage;
+            return _oCandidateLanguages;
         }
 
         [HttpPost]

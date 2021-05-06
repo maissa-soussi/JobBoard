@@ -40,18 +40,18 @@ namespace JobBoard.Controllers
         }
 
         [HttpGet("{Id}")]
-        public async Task<CandidateDiploma> GetCandidateDiploma(int Id)
+        public async Task<List<CandidateDiploma>> GetCandidateDiploma(int Id)
         {
-            _oCandidateDiploma = new CandidateDiploma();
+            _oCandidateDiplomas = new List<CandidateDiploma>();
             using (var httpClient = new HttpClient(_clientHandler))
             {
                 using (var response = await httpClient.GetAsync("https://localhost:44304/api/CandidateDiplomas/" + Id))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    _oCandidateDiploma = JsonConvert.DeserializeObject<CandidateDiploma>(apiResponse);
+                    _oCandidateDiplomas = JsonConvert.DeserializeObject<List<CandidateDiploma>>(apiResponse);
                 }
             }
-            return _oCandidateDiploma;
+            return _oCandidateDiplomas;
         }
 
         [HttpPost]
