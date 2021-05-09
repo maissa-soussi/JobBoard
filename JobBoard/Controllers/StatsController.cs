@@ -35,5 +35,20 @@ namespace JobBoard.Controllers
             }
             return _oStat;
         }
+
+        [HttpGet("{Id}")]
+        public async Task<Stat> GetStat(int Id)
+        {
+            Stat _oStat = new Stat();
+            using (var httpClient = new HttpClient(_clientHandler))
+            {
+                using (var response = await httpClient.GetAsync("https://localhost:44304/api/Stats/" + Id))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    _oStat = JsonConvert.DeserializeObject<Stat>(apiResponse);
+                }
+            }
+            return _oStat;
+        }
     }
 }
