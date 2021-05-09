@@ -1,44 +1,40 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
+using JobBoard.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.Net.Http;
-using System.Text;
 using Newtonsoft.Json;
-using JobBoard.Models;
-
 
 namespace JobBoard.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
-    public class DiplomaDTOController : ControllerBase
+    public class EducationLevelDTOController : ControllerBase
     {
         HttpClientHandler _clientHandler = new HttpClientHandler();
 
-        DiplomaDTO _oDiploma = new DiplomaDTO();
+        EducationLevelDTO _oEducationLevel = new EducationLevelDTO();
 
-        public DiplomaDTOController()
+        public EducationLevelDTOController()
         {
             _clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };
         }
 
         [HttpGet("{id}")]
-        public async Task<DiplomaDTO> GetDiplomaDTO(int id)
+        public async Task<EducationLevelDTO> GetEducationLevelDTO(int id)
         {
             using (var httpClient = new HttpClient(_clientHandler))
             {
-                using (var response = await httpClient.GetAsync("https://localhost:44304/api/DiplomaDTO/" + id))
+                using (var response = await httpClient.GetAsync("https://localhost:44304/api/EducationLevelDTO/" + id))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    _oDiploma = JsonConvert.DeserializeObject<DiplomaDTO>(apiResponse);
+                    _oEducationLevel = JsonConvert.DeserializeObject<EducationLevelDTO>(apiResponse);
                 }
             }
-            return _oDiploma;
+            return _oEducationLevel;
         }
-
     }
 }
-

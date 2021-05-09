@@ -18,7 +18,6 @@ namespace JobBoard.Controllers
     {
         HttpClientHandler _clientHandler = new HttpClientHandler();
 
-        DiplomaDTO _oDiploma = new DiplomaDTO();
         List<int >_idCandidats =new List<int>();
         List<Candidature> liste = new List<Candidature>();
 
@@ -28,7 +27,7 @@ namespace JobBoard.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<List<Candidature>> GetDiplomaDTO(int id)
+        public async Task<List<Candidature>> GetTri(int id)
         {
             using (var httpClient = new HttpClient(_clientHandler))
             {

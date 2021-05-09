@@ -19,8 +19,7 @@ namespace JobBoard.Models
 		public int? DomainId { get; set; }
 		public virtual Domain Domain { get; set; }	
 		
-		public int? DiplomaId { get; set; }
-		public virtual Diploma Diploma { get; set; }
+		public string Diploma { get; set; }	
 
 		public int? EducationLevelId { get; set; }
 		public virtual EducationLevel EducationLevel { get; set; }
