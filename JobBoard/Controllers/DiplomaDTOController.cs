@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 
 namespace JobBoard.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class DiplomaDTOController : ControllerBase
     {
