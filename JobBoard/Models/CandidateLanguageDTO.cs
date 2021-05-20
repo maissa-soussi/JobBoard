@@ -8,6 +8,8 @@ namespace JobBoard.Models
     public class CandidateLanguageDTO
     {
         public int? LanguageId { get; set; }
+        public string Language { get; set; }
         public int? LanguageLevelId { get; set; }
+        public string LanguageLevel { get; set; }
     }
 }
