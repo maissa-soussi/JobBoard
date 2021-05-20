@@ -12,29 +12,29 @@ namespace JobBoard.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class EducationLevelDTOController : ControllerBase
+    public class DiplomaDTOController : ControllerBase
     {
         HttpClientHandler _clientHandler = new HttpClientHandler();
 
-        EducationLevelDTO _oEducationLevel = new EducationLevelDTO();
+        DiplomaDTO _oDiploma = new DiplomaDTO();
 
-        public EducationLevelDTOController()
+        public DiplomaDTOController()
         {
             _clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };
         }
 
         [HttpGet("{id}")]
-        public async Task<EducationLevelDTO> GetEducationLevelDTO(int id)
+        public async Task<DiplomaDTO> GetDiplomaDTO(int id)
         {
             using (var httpClient = new HttpClient(_clientHandler))
             {
-                using (var response = await httpClient.GetAsync("https://localhost:44304/api/EducationLevelDTO/" + id))
+                using (var response = await httpClient.GetAsync("https://localhost:44304/api/DiplomaDTO/" + id))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    _oEducationLevel = JsonConvert.DeserializeObject<EducationLevelDTO>(apiResponse);
+                    _oDiploma = JsonConvert.DeserializeObject<DiplomaDTO>(apiResponse);
                 }
             }
-            return _oEducationLevel;
+            return _oDiploma;
         }
     }
 }
