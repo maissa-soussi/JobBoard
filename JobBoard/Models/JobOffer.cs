@@ -21,6 +21,8 @@ namespace JobBoard.Models
         public string Description { get; set; }
         public int MinSalary { get; set; }
         public int MaxSalary { get; set; }
+        public int NbPositions { get; set; }
+        public int ExperienceDuration { get; set; }
         public string PublicationDate { get; set; }
         public string ExpirationDate { get; set; }
         public int? DomainId { get; set; }
